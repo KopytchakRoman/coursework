@@ -34,7 +34,6 @@ function PerfumeDetailPage() {
     backgroundImage: `url(${mockPerfume.backgroundUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
-    backgroundAttachment: 'fixed',
   };
 
   return (
