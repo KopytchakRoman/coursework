@@ -8,6 +8,7 @@ import FavoritesPage from './pages/FavoritesPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
+import ProtectedRoute from './ProtectedRoute.jsx';
 
 function App() {
   return (
@@ -17,8 +18,11 @@ function App() {
         <Route path="/brands" element={<BrandsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/perfume/:id" element={<PerfumeDetailPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/favorites" element={<FavoritesPage />} />
+        </Route>
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
