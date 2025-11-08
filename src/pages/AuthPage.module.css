@@ -54,8 +54,11 @@
   text-decoration: none;
   padding-bottom: 10px;
   border-bottom: 4px solid transparent;
-}
 
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 .tabActive {
   color: var(--color-white);
   border-bottom-color: var(--color-accent);
