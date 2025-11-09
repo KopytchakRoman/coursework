@@ -5,11 +5,8 @@ import PerfumeCard from '../components/perfumecard/PerfumeCard.jsx';
 import styles from './HomePage.module.css';
 import useFetch from '../hooks/useFetch.jsx';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { useFavorites } from '../context/FavoritesContext.jsx'; // Переконайся, що цей файл .jsx
+import { useFavorites } from '../context/FavoritesContext.jsx';
 
-// --- 1. ВИДАЛЕНО ВСІ НЕВИКОРИСТАНІ ІМПОРТИ (searchIcon, popular... і т.д.) ---
-
-// --- ДАНІ ДЛЯ СЛАЙДЕРА (ВИПРАВЛЕНО) ---
 const slides = [
   {
     id: 1,
@@ -60,15 +57,13 @@ function HomePage() {
     setCurrentSlide(slideIndex);
   };
 
-  // --- 2. useEffect (ВИПРАВЛЕНО) ---
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []); // <-- Залежність 'slides.length' прибрана
+  }, []);
 
-  // ... (решта коду залишається без змін) ...
   useEffect(() => {
     const brandFromUrl = searchParams.get('search');
     if (brandFromUrl && allPerfumes) {

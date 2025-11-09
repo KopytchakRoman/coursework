@@ -40,8 +40,6 @@ export function FavoritesProvider({ children }) {
   );
 }
 
-// --- ВИПРАВЛЕННЯ ---
-// (Таке саме, як в AuthContext)
 // eslint-disable-next-line react-refresh/only-export-components
 export function useFavorites() {
   const context = useContext(FavoritesContext);
