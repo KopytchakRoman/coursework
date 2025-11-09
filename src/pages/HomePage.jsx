@@ -5,10 +5,11 @@ import PerfumeCard from '../components/perfumecard/PerfumeCard.jsx';
 import styles from './HomePage.module.css';
 import useFetch from '../hooks/useFetch.jsx';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { useFavorites } from '../context/FavoritesContext.js'; // <-- ВИПРАВЛЕНО .js
+import { useFavorites } from '../context/FavoritesContext.jsx'; // Переконайся, що цей файл .jsx
+
+// --- 1. ВИДАЛЕНО ВСІ НЕВИКОРИСТАНІ ІМПОРТИ (searchIcon, popular... і т.д.) ---
 
 // --- ДАНІ ДЛЯ СЛАЙДЕРА (ВИПРАВЛЕНО) ---
-// Ми використовуємо рядки-шляхи, а не змінні
 const slides = [
   {
     id: 1,
@@ -18,7 +19,6 @@ const slides = [
   { id: 2, src: '/assets/popular-1.png', title: 'НОВА КОЛЕКЦІЯ ATTAR' },
   { id: 3, src: '/assets/popular-3.png', title: 'ЗЕЛЕНА СВІЖІСТЬ MANCERA' },
 ];
-// ------------------------------------
 
 const popularImages = [
   {
@@ -60,15 +60,15 @@ function HomePage() {
     setCurrentSlide(slideIndex);
   };
 
-  // --- useEffect (ВИПРАВЛЕНО) ---
+  // --- 2. useEffect (ВИПРАВЛЕНО) ---
   useEffect(() => {
     const timer = setInterval(() => {
-      // slides.length тут безпечно, бо 'slides' - це константа поза компонентом
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []); // <-- Масив залежностей тепер порожній
+  }, []); // <-- Залежність 'slides.length' прибрана
 
+  // ... (решта коду залишається без змін) ...
   useEffect(() => {
     const brandFromUrl = searchParams.get('search');
     if (brandFromUrl && allPerfumes) {

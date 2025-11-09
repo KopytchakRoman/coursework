@@ -2,8 +2,7 @@ import React from 'react';
 import styles from './PerfumeCard.module.css';
 import { Link } from 'react-router-dom';
 
-// 1. ВИПРАВЛЕНО: Шлях тепер веде до .js файлу
-import { useFavorites } from '../../context/FavoritesContext.js';
+import { useFavorites } from '../../context/FavoritesContext.jsx';
 
 import heartOutlineIcon from '/assets/heart-outline.png';
 import heartFilledIcon from '/assets/Heart.png';

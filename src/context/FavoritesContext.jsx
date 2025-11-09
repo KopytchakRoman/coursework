@@ -15,7 +15,6 @@ export function FavoritesProvider({ children }) {
   const toggleFavorite = (perfume) => {
     setFavorites((prevFavorites) => {
       const isFav = prevFavorites.some((p) => p.id === perfume.id);
-
       if (isFav) {
         return prevFavorites.filter((p) => p.id !== perfume.id);
       } else {
@@ -41,6 +40,9 @@ export function FavoritesProvider({ children }) {
   );
 }
 
+// --- ВИПРАВЛЕННЯ ---
+// (Таке саме, як в AuthContext)
+// eslint-disable-next-line react-refresh/only-export-components
 export function useFavorites() {
   const context = useContext(FavoritesContext);
   if (context === undefined) {

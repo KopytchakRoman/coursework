@@ -4,8 +4,7 @@ import Footer from '../components/footer/footer.jsx';
 import styles from './AuthPage.module.css';
 import { useNavigate } from 'react-router-dom';
 
-// 1. ВИПРАВЛЕНО: Шлях тепер веде до .js файлу
-import { useAuth } from '../context/AuthContext.js';
+import { useAuth } from '../context/AuthContext.jsx';
 
 function AuthPage() {
   const [activeTab, setActiveTab] = useState('login');

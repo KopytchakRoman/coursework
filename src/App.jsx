@@ -11,8 +11,8 @@ import NotFoundPage from './pages/NotFoundPage.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import BrandDetailPage from './pages/BrandDetailPage.jsx';
 
-import { FavoritesProvider } from './context/FavoritesContext.js';
-import { AuthProvider } from './context/AuthContext.js';
+import { FavoritesProvider } from './context/FavoritesContext.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
 
 function App() {
   return (
