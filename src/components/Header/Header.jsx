@@ -1,10 +1,18 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import styles from './header.module.css';
-
-import heartIcon from '../../assets/Heart.png';
+import { useAuth } from '../../context/AuthContext.jsx';
+import heartIcon from '/assets/Heart.png';
 
 function Header() {
+  const { isLoggedIn, user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logo}>
@@ -38,14 +46,24 @@ function Header() {
         >
           Про нас
         </NavLink>
-        <NavLink
-          to="/auth"
-          className={({ isActive }) =>
-            isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-          }
-        >
-          Вхід/Реєстрація
-        </NavLink>
+
+        {isLoggedIn ? (
+          <>
+            <span className={styles.welcomeUser}>Вітаємо, {user.name}!</span>
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              Вихід
+            </button>
+          </>
+        ) : (
+          <NavLink
+            to="/auth"
+            className={({ isActive }) =>
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+            }
+          >
+            Вхід/Реєстрація
+          </NavLink>
+        )}
 
         <NavLink
           to="/favorites"

@@ -5,12 +5,12 @@
 }
 
 .mainContent {
-  flex-grow: 1;
+  flex-grow: 1; /* Змушує цей блок заповнити весь простір */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 120px 40px;
-  background-image: url('../assets/auth-background.png');
+  justify-content: center; /* Центрує форму по горизонталі */
+  align-items: flex-start; /* Притискає форму до верху */
+  padding: 120px 40px; /* Задає відступ зверху */
+  background-color: rgb(100, 93, 47);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -34,7 +34,7 @@
   position: relative;
   z-index: 2;
 
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
   padding: 40px;
   border-radius: 8px;

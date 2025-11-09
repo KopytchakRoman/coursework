@@ -50,7 +50,32 @@
 }
 
 .heartIconImage {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   display: block;
+}
+
+.welcomeUser {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-right: -10px;
+}
+
+.logoutButton {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-white);
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  background-color: #333;
 }

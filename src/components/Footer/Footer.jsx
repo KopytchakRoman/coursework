@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './footer.module.css';
+
 function Footer() {
   return (
     <footer className={styles.footer}>
@@ -17,19 +18,33 @@ function Footer() {
         <div className={styles.follow}>
           <h4 className={styles.followTitle}>Follow us</h4>
           <div className={styles.socialIcons}>
-            <a href="#" className={styles.socialLink}>
+            <a
+              href="https://facebook.com/yourpage"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialLink}
+            >
               FB
             </a>
-            <a href="#" className={styles.socialLink}>
+            <a
+              href="https://instagram.com/yourpage"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialLink}
+            >
               IN
             </a>
-            <a href="#" className={styles.socialLink}>
+            <a
+              href="https://t.me/yourchannel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialLink}
+            >
               TG
             </a>
           </div>
         </div>
-      </div>
-
+      </div>{' '}
       <div className={styles.bottomBar}>
         <span>© 2025 Perfumer. Всі права захищено.</span>
         <div className={styles.legalLinks}>
