@@ -1,22 +1,20 @@
 import React from 'react';
-// 1. ІМПОРТУЄМО useNavigate
+
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Header from '../components/header/header.jsx';
 import Footer from '../components/footer/footer.jsx';
 import styles from './PerfumeDetail.module.css';
 import useFetch from '../hooks/useFetch.jsx';
 import { useFavorites } from '../context/FavoritesContext.jsx';
-// 2. ІМПОРТУЄМО useAuth
+
 import { useAuth } from '../context/AuthContext.jsx';
 
 function PerfumeDetailPage() {
   const { id } = useParams();
-  const { data: allPerfumes, loading, error } = useFetch('/api/perfumes.json');
+  const { data: allPerfumes, loading, error } = useFetch('/perfumes');
 
   const { toggleFavorite, isFavorite } = useFavorites();
-  // 3. ОТРИМУЄМО СТАН АВТОРИЗАЦІЇ
   const { isLoggedIn } = useAuth();
-  // 4. ОТРИМУЄМО ФУНКЦІЮ НАВІГАЦІЇ
   const navigate = useNavigate();
 
   const perfume = allPerfumes ? allPerfumes.find((p) => p.id == id) : null;
@@ -52,15 +50,12 @@ function PerfumeDetailPage() {
 
   const isFav = isFavorite(perfume.id);
 
-  // 5. ОНОВЛЮЄМО ОБРОБНИК КЛІКУ
   const handleFavoriteClick = (e) => {
     e.preventDefault();
 
     if (isLoggedIn) {
-      // Якщо залогінений - лайкаємо
       toggleFavorite(perfume);
     } else {
-      // Якщо ні - перекидаємо на сторінку входу
       navigate('/auth');
     }
   };

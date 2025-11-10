@@ -20,16 +20,50 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     try {
-      const response = await fetch('/api/users.json');
-      const users = await response.json();
-      const foundUser = users.find(
-        (u) => u.email === email && u.password === password
+      const response = await fetch(
+        `http://localhost:3001/users?email=${email}&password=${password}`
       );
+      const users = await response.json();
+
+      const foundUser = users[0];
+
       if (foundUser) {
         setUser(foundUser);
         return { success: true };
       } else {
         return { success: false, message: 'Неправильний email або пароль' };
+      }
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  };
+
+  const register = async (email, name, password) => {
+    try {
+      const checkResponse = await fetch(
+        `http://localhost:3001/users?email=${email}`
+      );
+      const existingUser = await checkResponse.json();
+
+      if (existingUser.length > 0) {
+        return { success: false, message: 'Цей email вже зареєстровано' };
+      }
+
+      const response = await fetch('http://localhost:3001/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, name, password }),
+      });
+
+      const newUser = await response.json();
+
+      if (response.ok) {
+        setUser(newUser);
+        return { success: true };
+      } else {
+        return { success: false, message: 'Помилка сервера при реєстрації' };
       }
     } catch (error) {
       return { success: false, message: error.message };
@@ -45,6 +79,7 @@ export function AuthProvider({ children }) {
     isLoggedIn,
     login,
     logout,
+    register,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

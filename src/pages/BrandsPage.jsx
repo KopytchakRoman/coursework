@@ -25,8 +25,7 @@ const popularBrands = [
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 function BrandsPage() {
-  const { data: fullBrandList, loading: fullListLoading } =
-    useFetch('/api/brands.json');
+  const { data: fullBrandList, loading: fullListLoading } = useFetch('/brands');
 
   const handleLetterClick = (letter) => {
     const element = document.getElementById(`letter-${letter}`);

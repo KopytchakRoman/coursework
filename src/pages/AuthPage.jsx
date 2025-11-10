@@ -3,13 +3,13 @@ import Header from '../components/header/header.jsx';
 import Footer from '../components/footer/footer.jsx';
 import styles from './AuthPage.module.css';
 import { useNavigate } from 'react-router-dom';
-
 import { useAuth } from '../context/AuthContext.jsx';
 
 function AuthPage() {
-  const [activeTab, setActiveTab] = useState('login');
+  const [activeTab, setActiveTab] = useState('register');
   const navigate = useNavigate();
-  const { login } = useAuth();
+
+  const { login, register } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,9 +26,7 @@ function AuthPage() {
         setError('Будь ласка, заповніть всі поля');
         return;
       }
-
       const result = await login(email, password);
-
       if (result.success) {
         navigate('/');
       } else {
@@ -39,7 +37,18 @@ function AuthPage() {
         setError('Паролі не збігаються');
         return;
       }
-      setError('Реєстрація наразі недоступна');
+      if (!email || !password || !name) {
+        setError('Будь ласка, заповніть всі поля');
+        return;
+      }
+
+      const result = await register(email, name, password);
+
+      if (result.success) {
+        navigate('/');
+      } else {
+        setError(result.message);
+      }
     }
   };
 
@@ -83,20 +92,23 @@ function AuthPage() {
               />
             </div>
 
-            {activeTab === 'register' && (
-              <div className={styles.inputGroup}>
-                <label htmlFor="name" className={styles.label}>
-                  Ім'я:
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className={styles.input}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-            )}
+            <div
+              className={styles.inputGroup}
+              style={{
+                visibility: activeTab === 'register' ? 'visible' : 'hidden',
+              }}
+            >
+              <label htmlFor="name" className={styles.label}>
+                Ім'я:
+              </label>
+              <input
+                type="text"
+                id="name"
+                className={styles.input}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
 
             <div className={styles.inputGroup}>
               <label htmlFor="password" className={styles.label}>
@@ -111,20 +123,23 @@ function AuthPage() {
               />
             </div>
 
-            {activeTab === 'register' && (
-              <div className={styles.inputGroup}>
-                <label htmlFor="confirmPassword" className={styles.label}>
-                  Підтвердіть пароль:
-                </label>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  className={styles.input}
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </div>
-            )}
+            <div
+              className={styles.inputGroup}
+              style={{
+                visibility: activeTab === 'register' ? 'visible' : 'hidden',
+              }}
+            >
+              <label htmlFor="confirmPassword" className={styles.label}>
+                Підтвердіть пароль:
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                className={styles.input}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
 
             {error && <p className={styles.errorText}>{error}</p>}
 

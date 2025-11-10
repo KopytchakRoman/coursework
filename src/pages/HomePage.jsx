@@ -46,7 +46,7 @@ function HomePage() {
   const novinkiGridRef = useRef(null);
   const upodobannyaGridRef = useRef(null);
 
-  const { data: allPerfumes, loading, error } = useFetch('/api/perfumes.json');
+  const { data: allPerfumes, loading, error } = useFetch('/perfumes');
   const navigate = useNavigate();
   const searchContainerRef = useRef(null);
   const [searchParams, setSearchParams] = useSearchParams();
