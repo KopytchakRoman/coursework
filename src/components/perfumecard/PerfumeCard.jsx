@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './PerfumeCard.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // 1. ІМПОРТУЄМО useNavigate
 
 import { useFavorites } from '../../context/FavoritesContext.jsx';
+import { useAuth } from '../../context/AuthContext.jsx'; // 2. ІМПОРТУЄМО useAuth
 
 import heartOutlineIcon from '/assets/heart-outline.png';
 import heartFilledIcon from '/assets/Heart.png';
@@ -11,13 +12,24 @@ function PerfumeCard({ id, brand, name, type, imageUrl }) {
   const perfume = { id, brand, name, type, imageUrl };
 
   const { toggleFavorite, isFavorite } = useFavorites();
+  const { isLoggedIn } = useAuth(); // 3. ОТРИМУЄМО СТАН АВТОРИЗАЦІЇ
+  const navigate = useNavigate(); // 4. ОТРИМУЄМО ФУНКЦІЮ НАВІГАЦІЇ
 
   const isFav = isFavorite(id);
 
   const handleFavoriteClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleFavorite(perfume);
+
+    // 5. --- ГОЛОВНА ЛОГІКА ---
+    if (isLoggedIn) {
+      // Якщо користувач залогінений - додаємо в обране
+      toggleFavorite(perfume);
+    } else {
+      // Якщо ні - перекидаємо на сторінку логіну
+      navigate('/auth');
+    }
+    // ---------------------------
   };
 
   return (
