@@ -9,8 +9,7 @@ import styles from './BrandDetailPage.module.css';
 function BrandDetailPage() {
   const { brandName } = useParams();
 
-  const { data: allPerfumes, loading, error } = useFetch('/api/perfumes.json');
-
+  const { data: allPerfumes, loading, error } = useFetch('/perfumes');
   const brandPerfumes = allPerfumes
     ? allPerfumes.filter(
         (perfume) => perfume.brand.toLowerCase() === brandName.toLowerCase()

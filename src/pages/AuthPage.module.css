@@ -5,11 +5,11 @@
 }
 
 .mainContent {
-  flex-grow: 1; /* Змушує цей блок заповнити весь простір */
+  flex-grow: 1;
   display: flex;
-  justify-content: center; /* Центрує форму по горизонталі */
-  align-items: flex-start; /* Притискає форму до верху */
-  padding: 120px 40px; /* Задає відступ зверху */
+  justify-content: center;
+  align-items: flex-start;
+  padding: 120px 40px;
   background-color: rgb(100, 93, 47);
   background-size: cover;
   background-position: center;
