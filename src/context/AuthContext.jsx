@@ -20,8 +20,9 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     try {
+      const baseUrl = import.meta.env.VITE_API_URL;
       const response = await fetch(
-        `http://localhost:3001/users?email=${email}&password=${password}`
+        `${baseUrl}/users?email=${email}&password=${password}`
       );
       const users = await response.json();
 
@@ -40,16 +41,15 @@ export function AuthProvider({ children }) {
 
   const register = async (email, name, password) => {
     try {
-      const checkResponse = await fetch(
-        `http://localhost:3001/users?email=${email}`
-      );
+      const baseUrl = import.meta.env.VITE_API_URL;
+      const checkResponse = await fetch(`${baseUrl}/users?email=${email}`);
       const existingUser = await checkResponse.json();
 
       if (existingUser.length > 0) {
         return { success: false, message: 'Цей email вже зареєстровано' };
       }
 
-      const response = await fetch('http://localhost:3001/users', {
+      const response = await fetch(`${baseUrl}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

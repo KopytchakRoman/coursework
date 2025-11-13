@@ -8,7 +8,8 @@ function useFetch(url) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001' + url);
+        const baseUrl = import.meta.env.VITE_API_URL;
+        const response = await fetch(`${baseUrl}${url}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
