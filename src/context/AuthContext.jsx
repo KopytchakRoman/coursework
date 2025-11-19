@@ -5,34 +5,51 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem('user');
-    return savedUser ? JSON.parse(savedUser) : null;
+    const savedToken = localStorage.getItem('token');
+
+    return savedUser ? { ...JSON.parse(savedUser), token: savedToken } : null;
   });
 
   const isLoggedIn = user !== null;
 
   useEffect(() => {
-    if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
+    if (user && user.token) {
+      const { token, ...userDetails } = user;
+      localStorage.setItem('user', JSON.stringify(userDetails));
+      localStorage.setItem('token', token);
     } else {
       localStorage.removeItem('user');
+      localStorage.removeItem('token');
     }
   }, [user]);
 
   const login = async (email, password) => {
     try {
       const baseUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(
-        `${baseUrl}/users?email=${email}&password=${password}`
-      );
-      const users = await response.json();
 
-      const foundUser = users[0];
+      const response = await fetch(`${baseUrl}/api/users/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-      if (foundUser) {
-        setUser(foundUser);
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem(
+          'user',
+          JSON.stringify({ _id: data._id, name: data.name, email: data.email })
+        );
+        setUser({ ...data, token: data.token });
         return { success: true };
       } else {
-        return { success: false, message: 'Неправильний email або пароль' };
+        return {
+          success: false,
+          message: data.message || 'Неправильний email або пароль',
+        };
       }
     } catch (error) {
       return { success: false, message: error.message };
@@ -42,28 +59,28 @@ export function AuthProvider({ children }) {
   const register = async (email, name, password) => {
     try {
       const baseUrl = import.meta.env.VITE_API_URL;
-      const checkResponse = await fetch(`${baseUrl}/users?email=${email}`);
-      const existingUser = await checkResponse.json();
 
-      if (existingUser.length > 0) {
-        return { success: false, message: 'Цей email вже зареєстровано' };
-      }
-
-      const response = await fetch(`${baseUrl}/users`, {
+      const response = await fetch(`${baseUrl}/api/users/register`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, name, password }),
       });
 
-      const newUser = await response.json();
+      const data = await response.json();
 
       if (response.ok) {
-        setUser(newUser);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem(
+          'user',
+          JSON.stringify({ _id: data._id, name: data.name, email: data.email })
+        );
+        setUser({ ...data, token: data.token });
         return { success: true };
       } else {
-        return { success: false, message: 'Помилка сервера при реєстрації' };
+        return {
+          success: false,
+          message: data.message || 'Помилка реєстрації',
+        };
       }
     } catch (error) {
       return { success: false, message: error.message };
@@ -72,6 +89,8 @@ export function AuthProvider({ children }) {
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
   };
 
   const value = {

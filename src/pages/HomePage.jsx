@@ -17,23 +17,43 @@ const slides = [
   { id: 3, src: '/assets/popular-3.png', title: 'ЗЕЛЕНА СВІЖІСТЬ MANCERA' },
 ];
 
-const popularImages = [
+const popularConfig = [
   {
     id: 1,
     src: '/assets/popular-1.png',
     className: styles.popularTall,
-    perfumeId: 22,
+    partialName: 'Eros',
   },
-  { id: 2, src: '/assets/popular-2.png', className: '', perfumeId: 7 },
-  { id: 3, src: '/assets/popular-4.png', className: '', perfumeId: 10 },
+  {
+    id: 2,
+    src: '/assets/popular-2.png',
+    className: '',
+    partialName: 'Bloom',
+  },
+  {
+    id: 3,
+    src: '/assets/popular-4.png',
+    className: '',
+    partialName: 'Le Male',
+  },
   {
     id: 4,
     src: '/assets/popular-6.png',
     className: styles.popularTall,
-    perfumeId: 12,
+    partialName: 'Imagination',
   },
-  { id: 5, src: '/assets/popular-3.png', className: '', perfumeId: 20 },
-  { id: 6, src: '/assets/popular-5.png', className: '', perfumeId: 15 },
+  {
+    id: 5,
+    src: '/assets/popular-3.png',
+    className: '',
+    partialName: 'Oud Wood',
+  },
+  {
+    id: 6,
+    src: '/assets/popular-5.png',
+    className: '',
+    partialName: 'Megamare',
+  },
 ];
 
 function HomePage() {
@@ -52,6 +72,21 @@ function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { favorites } = useFavorites();
+
+  const popularItems = useMemo(() => {
+    if (!allPerfumes) return [];
+
+    return popularConfig.map((config) => {
+      const foundPerfume = allPerfumes.find((p) =>
+        p.name.toLowerCase().includes(config.partialName.toLowerCase())
+      );
+
+      return {
+        ...config,
+        _id: foundPerfume ? foundPerfume._id : null,
+      };
+    });
+  }, [allPerfumes]);
 
   const goToSlide = (slideIndex) => {
     setCurrentSlide(slideIndex);
@@ -74,6 +109,7 @@ function HomePage() {
       setSearchParams(searchParams);
     }
   }, [allPerfumes, searchParams, setSearchParams]);
+
   const suggestions = useMemo(() => {
     if (!searchInput || !allPerfumes) return [];
     return allPerfumes
@@ -84,6 +120,7 @@ function HomePage() {
       )
       .slice(0, 5);
   }, [allPerfumes, searchInput]);
+
   const filteredPerfumes = useMemo(() => {
     if (!searchTerm || !allPerfumes) return [];
     return allPerfumes.filter(
@@ -92,10 +129,12 @@ function HomePage() {
         p.brand.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [allPerfumes, searchTerm]);
+
   const handleSearchChange = (event) => {
     setSearchInput(event.target.value);
     setShowSuggestions(event.target.value.length > 0);
   };
+
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     const term = searchInput.trim();
@@ -103,14 +142,17 @@ function HomePage() {
     setSearchTerm(term);
     setShowSuggestions(false);
   };
+
   const handleSuggestionClick = (perfume) => {
     setSearchInput(perfume.name);
     setShowSuggestions(false);
-    navigate(`/perfume/${perfume.id}`);
+    navigate(`/perfume/${perfume._id}`);
   };
+
   const handleFocus = () => {
     if (searchInput.length > 0) setShowSuggestions(true);
   };
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -123,12 +165,14 @@ function HomePage() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [searchContainerRef]);
+
   const handleScroll = (direction, ref) => {
     if (ref.current) {
       const scrollAmount = (260 + 30) * 2 * (direction === 'next' ? 1 : -1);
       ref.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
+
   const renderPerfumeCards = (perfumeList) => {
     if (loading)
       return <p className={styles.loadingText}>Завантаження ароматів...</p>;
@@ -145,7 +189,7 @@ function HomePage() {
       return null;
     }
     return listToRender.map((perfume) => (
-      <PerfumeCard key={perfume.id} {...perfume} />
+      <PerfumeCard key={perfume._id} _id={perfume._id} {...perfume} />
     ));
   };
 
@@ -184,7 +228,7 @@ function HomePage() {
                 <div className={styles.suggestionsList}>
                   {suggestions.map((perfume) => (
                     <div
-                      key={perfume.id}
+                      key={perfume._id}
                       className={styles.suggestionItem}
                       onClick={() => handleSuggestionClick(perfume)}
                     >
@@ -255,19 +299,32 @@ function HomePage() {
             <section className={styles.section}>
               <h2 className={styles.sectionTitle}>ЗАРАЗ ПОПУЛЯРНО</h2>
               <div className={styles.popularGrid}>
-                {popularImages.map((image) => (
-                  <Link
-                    key={image.id}
-                    to={`/perfume/${image.perfumeId}`}
-                    className={`${styles.popularItem} ${image.className} ${styles.popularLink}`}
-                  >
-                    <img
-                      src={image.src}
-                      alt={`Popular ${image.id}`}
-                      className={styles.popularImage}
-                    />
-                  </Link>
-                ))}
+                {popularItems.map((image) =>
+                  image._id ? (
+                    <Link
+                      key={image.id}
+                      to={`/perfume/${image._id}`}
+                      className={`${styles.popularItem} ${image.className} ${styles.popularLink}`}
+                    >
+                      <img
+                        src={image.src}
+                        alt={`Popular ${image.partialName}`}
+                        className={styles.popularImage}
+                      />
+                    </Link>
+                  ) : (
+                    <div
+                      key={image.id}
+                      className={`${styles.popularItem} ${image.className}`}
+                    >
+                      <img
+                        src={image.src}
+                        alt={`Popular ${image.partialName}`}
+                        className={styles.popularImage}
+                      />
+                    </div>
+                  )
+                )}
               </div>
             </section>
 
