@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/header/header.jsx';
+import Header from '../components/Header/header.jsx';
 import Footer from '../components/footer/footer.jsx';
 import PerfumeCard from '../components/perfumecard/PerfumeCard.jsx';
 import useFetch from '../hooks/useFetch.jsx';

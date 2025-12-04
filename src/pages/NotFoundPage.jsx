@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/header/header.jsx';
+import Header from '../components/Header/header.jsx';
 import Footer from '../components/footer/footer.jsx';
 import styles from './NotFoundPage.module.css';
 

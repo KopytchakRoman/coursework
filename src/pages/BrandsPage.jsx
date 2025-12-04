@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Header from '../components/header/header.jsx';
+import Header from '../components/Header/header.jsx';
 import Footer from '../components/footer/footer.jsx';
 import styles from './BrandsPage.module.css';
 import useFetch from '../hooks/useFetch.jsx';
