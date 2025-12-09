@@ -7,10 +7,10 @@
 .mainContent {
   flex-grow: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: flex-start;
   padding: 120px 40px;
-  background-image: url('../assets/auth-background.png');
+  background-color: rgb(100, 93, 47);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -34,7 +34,7 @@
   position: relative;
   z-index: 2;
 
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
   padding: 40px;
   border-radius: 8px;

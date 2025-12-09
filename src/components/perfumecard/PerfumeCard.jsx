@@ -1,28 +1,49 @@
 import React from 'react';
 import styles from './PerfumeCard.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import heartOutlineIcon from '../../assets/heart-outline.png';
+import { useFavorites } from '../../context/FavoritesContext.jsx';
+import { useAuth } from '../../context/AuthContext.jsx';
+
+import heartOutlineIcon from '/assets/heart-outline.png';
+import heartFilledIcon from '/assets/Heart.png';
 
 function PerfumeCard({ id, brand, name, type, imageUrl }) {
-  const imageToDisplay = imageUrl;
+  const perfume = { id, brand, name, type, imageUrl };
+
+  const { toggleFavorite, isFavorite } = useFavorites();
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  const isFav = isFavorite(id);
+
+  const handleFavoriteClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (isLoggedIn) {
+      toggleFavorite(perfume);
+    } else {
+      navigate('/auth');
+    }
+  };
 
   return (
     <Link to={`/perfume/${id}`} className={styles.card}>
       <div className={styles.imageContainer}>
-        <div className={styles.heartIcon}>
+        <button className={styles.heartIcon} onClick={handleFavoriteClick}>
           <img
-            src={heartOutlineIcon}
-            alt="Add to Favorites"
+            src={isFav ? heartFilledIcon : heartOutlineIcon}
+            alt="Toggle Favorite"
             className={styles.heartIconImage}
           />
-        </div>
+        </button>
 
-        {!imageToDisplay ? (
+        {!imageUrl ? (
           <div className={styles.imagePlaceholder}></div>
         ) : (
           <img
-            src={imageToDisplay}
+            src={imageUrl}
             alt={`${brand} ${name}`}
             className={styles.perfumeImage}
           />

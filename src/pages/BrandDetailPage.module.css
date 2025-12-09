@@ -1,0 +1,36 @@
+.page {
+  background-color: var(--color-white);
+}
+
+.mainContent {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.perfumeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.loadingText,
+.errorText {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  padding: 40px;
+}
+.errorText {
+  color: #e64949;
+}
