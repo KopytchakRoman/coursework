@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../components/header/header.jsx';
+import Header from '../components/Header/header.jsx';
 import Footer from '../components/footer/footer.jsx';
 import styles from './AuthPage.module.css';
 import { useNavigate } from 'react-router-dom';

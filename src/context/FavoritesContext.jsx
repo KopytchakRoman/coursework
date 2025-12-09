@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const FavoritesContext = createContext();
+export const FavoritesContext = createContext();
 
 export function FavoritesProvider({ children }) {
   const [favorites, setFavorites] = useState(() => {
@@ -40,7 +40,6 @@ export function FavoritesProvider({ children }) {
   );
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useFavorites() {
   const context = useContext(FavoritesContext);
   if (context === undefined) {

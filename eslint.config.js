@@ -1,29 +1,57 @@
 import js from '@eslint/js';
 import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks';
+import babelParser from '@babel/eslint-parser';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import { defineConfig, globalIgnores } from 'eslint/config';
 
-export default defineConfig([
-  globalIgnores(['dist']),
+export default [
   {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-    ],
+    files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+    plugins: {
+      'react-refresh': reactRefresh,
+    },
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      parser: babelParser,
       parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
+        requireConfigFile: false,
+        babelOptions: {
+          presets: ['@babel/preset-react'],
+        },
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': 'off',
     },
   },
-]);
+
+  {
+    files: ['**/*.cy.jsx', '**/*.cy.js'],
+    languageOptions: {
+      parser: babelParser,
+      parserOptions: {
+        requireConfigFile: false,
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.mocha,
+        cy: true,
+        Cypress: true,
+      },
+    },
+  },
+
+  {
+    files: ['vite.config.js', 'cypress.config.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+    rules: {
+      'no-unused-vars': 'off',
+      'no-undef': 'off',
+    },
+  },
+];
