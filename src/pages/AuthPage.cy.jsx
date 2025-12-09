@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { FavoritesContext } from '../context/FavoritesContext';
 import { MemoryRouter } from 'react-router-dom';
 
-describe('<AuthPage /> (Target ~55% Coverage)', () => {
+describe('<AuthPage /> ', () => {
   const mountPage = (loginResponse = { success: false }) => {
     const authValue = {
       isLoggedIn: false,
