@@ -123,3 +123,55 @@
   text-decoration: none;
   color: inherit;
 }
+
+@media (max-width: 1024px) {
+  .brandGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brandGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .brandCard {
+    min-height: 100px;
+    padding: 10px;
+  }
+
+  .brandLogo {
+    max-height: 60px;
+    width: 80%;
+  }
+
+  .letterGroup {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .letterTitle {
+    font-size: 28px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  .brandListColumn {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .alphabetNav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .alphabetLink {
+    font-size: 16px;
+    padding: 8px;
+  }
+}

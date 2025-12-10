@@ -79,3 +79,26 @@
 .logoutButton:hover {
   background-color: #333;
 }
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 15px;
+    gap: 20px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .navLink {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .welcomeUser {
+    display: none;
+  }
+}

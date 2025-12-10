@@ -309,3 +309,44 @@
   color: inherit;
   display: block;
 }
+@media (max-width: 768px) {
+  .heroSection {
+    height: 350px;
+    margin-top: 20px;
+  }
+
+  .heroTitle {
+    font-size: 24px;
+  }
+
+  .searchContainer {
+    max-width: 90%;
+  }
+
+  .perfumeGrid {
+    grid-auto-columns: calc(50% - 15px);
+  }
+
+  .popularGrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .popularTall {
+    grid-row: span 1;
+  }
+
+  .popularItem {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 20px;
+  }
+
+  .perfumeGrid {
+    grid-auto-columns: calc(85% - 10px);
+  }
+}
