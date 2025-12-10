@@ -34,3 +34,20 @@
 .errorText {
   color: #e64949;
 }
+
+@media (max-width: 900px) {
+  .perfumeGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .mainContent {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+}

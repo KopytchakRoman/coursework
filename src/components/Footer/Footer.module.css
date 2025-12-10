@@ -84,3 +84,24 @@
 .legalLink:hover {
   color: var(--color-white);
 }
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .about {
+    order: 2;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .legalLinks {
+    justify-content: center;
+  }
+}
