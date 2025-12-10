@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import Header from '../components/Header/header.jsx';
-import Footer from '../components/footer/footer.jsx';
+import Header from '../components/Header/Header.jsx';
+import Footer from '../components/Footer/Footer.jsx';
 import styles from './PerfumeDetail.module.css';
 import useFetch from '../hooks/useFetch.jsx';
 import { useFavorites } from '../context/FavoritesContext.jsx';
