@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import styles from './header.module.css';
+import styles from './Header.module.css';
 import { useAuth } from '../../context/AuthContext.jsx';
 import heartIcon from '/assets/Heart.png';
 
