@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.25% </span>
+                <span class="strong">27.27% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/16</span>
+                <span class='fraction'>3/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/24</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.81% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/11</span>
+                <span class='fraction'>3/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -125,30 +125,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,6 +148,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,9 +156,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header/header.jsx';
@@ -179,13 +179,13 @@ import PerfumeCard from '../components/perfumecard/PerfumeCard.jsx';
 import useFetch from '../hooks/useFetch.jsx';
 import styles from './BrandDetailPage.module.css';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >BrandDetailPage<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>) {</span></span>
-  const { brandName } = useParams();
+function <span class="fstat-no" title="function not covered" >BrandDetailPage<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>) <span class="cstat-no" title="statement not covered" >{</span></span></span>
+  const { brandName } = <span class="cstat-no" title="statement not covered" >useParams();</span>
 &nbsp;
-  const { data: allPerfumes, loading, error } = useFetch('/perfumes');
+  const { data: allPerfumes, loading, error } = <span class="cstat-no" title="statement not covered" >useFetch('/perfumes');</span>
   const brandPerfumes = <span class="cstat-no" title="statement not covered" >allPerfumes</span>
     ? allPerfumes.filter(
-        (perfume) =&gt; perfume.brand.toLowerCase() === brandName.toLowerCase()
+<span class="fstat-no" title="function not covered" >        (p</span>erfume) =&gt; <span class="cstat-no" title="statement not covered" >perfume.brand.toLowerCase() === brandName.toLowerCase()</span>
       )
     : [];
 &nbsp;
@@ -196,13 +196,13 @@ function <span class="fstat-no" title="function not covered" >BrandDetailPage<sp
         &lt;h1 className={styles.title}&gt;{brandName}&lt;/h1&gt;
 &nbsp;
         &lt;div className={styles.perfumeGrid}&gt;
-          {loading &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;p className={styles.loadingText}&gt;Завантаження...&lt;/p&gt;}</span>
+          {loading &amp;&amp; &lt;p className={styles.loadingText}&gt;Завантаження...&lt;/p&gt;}
           {error &amp;&amp; &lt;p className={styles.errorText}&gt;Помилка завантаження.&lt;/p&gt;}
 &nbsp;
           {!loading &amp;&amp;
             brandPerfumes.length &gt; 0 &amp;&amp;
-            brandPerfumes.map((perfume) =&gt; (
-<span class="branch-2 cbranch-no" title="branch not covered" >              &lt;PerfumeCard</span>
+            brandPerfumes.map(<span class="fstat-no" title="function not covered" >(p</span>erfume) =&gt; (
+<span class="cstat-no" title="statement not covered" >              &lt;PerfumeCard</span>
                 key={perfume.id}
                 id={perfume.id}
                 brand={perfume.brand}
@@ -232,7 +232,7 @@ export default BrandDetailPage;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-12-08T20:06:33.772Z
+                at 2025-12-09T09:36:54.593Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

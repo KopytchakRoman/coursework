@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../components/Header/header.jsx';
-import Footer from '../components/footer/footer.jsx';
+import Header from '../components/Header/Header.jsx';
+import Footer from '../components/Footer/Footer.jsx';
 import PerfumeCard from '../components/perfumecard/PerfumeCard.jsx';
 import styles from './FavoritesPage.module.css';
 

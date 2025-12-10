@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../components/Header/header.jsx';
-import Footer from '../components/footer/footer.jsx';
+import Header from '../components/Header/Header.jsx';
+import Footer from '../components/Footer/Footer.jsx';
 import styles from './AboutPage.module.css';
 
 function AboutPage() {
