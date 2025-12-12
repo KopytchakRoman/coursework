@@ -1,10 +1,12 @@
 describe('Навігація по сайту (E2E Real)', () => {
+  const baseUrl = Cypress.config('baseUrl');
+
   beforeEach(() => {
     cy.visit('/');
   });
 
   it('успішно завантажує головну сторінку', () => {
-    cy.url().should('eq', 'http://localhost:5173/');
+    cy.url().should('eq', `${baseUrl}/`);
 
     cy.contains('ЗНАЙДИ САМЕ ТЕ').should('be.visible');
     cy.contains('НОВИНКИ').should('be.visible');
@@ -44,7 +46,7 @@ describe('Навігація по сайту (E2E Real)', () => {
 
     cy.contains('a', 'Perfumer').click();
 
-    cy.url().should('eq', 'http://localhost:5173/');
+    cy.url().should('eq', `${baseUrl}/`);
     cy.contains('ЗНАЙДИ САМЕ ТЕ').should('be.visible');
   });
 });

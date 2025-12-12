@@ -1,16 +1,45 @@
-# React + Vite
+🌸 Perfumer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Full Stack веб-додаток (MERN) для пошуку та збереження парфумів з JWT-авторизацією.
 
-Currently, two official plugins are available:
+🚀 Демо
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Frontend: https://perfumer-z5th.vercel.app/
 
-## React Compiler
+Backend: https://perfumer-api.onrender.com
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🛠️ Стек
 
-## Expanding the ESLint configuration
+Core: MongoDB, Express.js, React 18, Node.js
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Tools: Vite, Cypress (E2E/Component tests), JWT, bcryptjs
+
+⚙️ Швидкий запуск
+
+1. Бекенд
+
+cd perfumer-backend
+npm install
+
+# Створіть .env: PORT=3001, MONGO_URI=..., JWT_SECRET=...
+
+npm run data:import # Завантажити тестові дані
+npm start
+
+2. Фронтенд
+
+cd perfumer
+npm install
+
+# Створіть .env: VITE_API_URL=http://localhost:3001
+
+npm run dev
+
+🧪 Тести
+
+cd perfumer
+npx cypress open
+Автор:
+Копитчак Роман Анатолійович
+Група:
+КН 3 курс 1 група
