@@ -37,13 +37,22 @@ self.addEventListener('fetch', (event) => {
 
   // ІГНОРУЄМО: запити до бази даних (бекенду), POST-запити та розширення браузера.
   // Завдяки цьому твої парфуми завжди будуть вантажитися з сервера, а не видавати помилку.
-  if (
-    request.method !== 'GET' ||
-    request.headers.get('accept')?.includes('application/json') ||
-    request.url.includes('/api/') ||
-    request.url.includes('chrome-extension') ||
-    request.url.includes('localhost:5000') // Ігноруємо локальний бекенд
-  ) {
+  // Спеціальна стратегія для API (бази даних): Спершу мережа, потім кеш
+  if (request.url.includes('/api/')) {
+    event.respondWith(
+      fetch(request)
+        .then((networkResponse) => {
+          // Якщо інтернет є - зберігаємо свіжу копію в окремий кеш і віддаємо дані
+          return caches.open('perfumer-api-cache-v1').then((cache) => {
+            cache.put(request, networkResponse.clone());
+            return networkResponse;
+          });
+        })
+        .catch(() => {
+          // Якщо інтернету немає (помилка fetch) - шукаємо останні дані в кеші
+          return caches.match(request);
+        })
+    );
     return;
   }
 
