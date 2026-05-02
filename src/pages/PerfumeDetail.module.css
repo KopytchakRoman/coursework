@@ -213,3 +213,74 @@
   text-decoration: none;
   font-weight: bold;
 }
+/* --- Адаптивність для планшетів та великих телефонів --- */
+@media (max-width: 900px) {
+  /* Картинка і ноти стають в одну колонку (одне під одним) */
+  .topSection {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Теги робимо по 2 в рядку, щоб їм не було тісно */
+  .tagsSection {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  /* Опис займає трохи більше місця */
+  .descriptionContent {
+    padding: 30px;
+  }
+}
+
+/* --- Адаптивність для мобільних телефонів --- */
+@media (max-width: 576px) {
+  .mainContent {
+    padding: 30px 15px; /* Зменшуємо бокові відступи */
+  }
+
+  .topSection {
+    margin-bottom: 40px;
+  }
+
+  /* Зменшуємо картинку на телефоні */
+  .perfumeImage {
+    max-height: 250px;
+  }
+
+  /* Робимо текст нот трохи меншим */
+  .note {
+    grid-template-columns: 80px 1fr;
+    gap: 10px;
+  }
+
+  .noteName {
+    font-size: 13px;
+  }
+
+  /* Теги стають по одному в рядок (одне під одним) */
+  .tagsSection {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .tagCard {
+    width: 100%; /* Розтягуємо картку тегу на всю ширину */
+  }
+
+  /* Зменшуємо розмір шрифту в описі */
+  .descriptionTitle {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .descriptionText {
+    font-size: 14px;
+    text-align: left; /* Краще читається на телефоні, ніж justify */
+  }
+
+  .descriptionContent {
+    padding: 20px 15px;
+  }
+}
